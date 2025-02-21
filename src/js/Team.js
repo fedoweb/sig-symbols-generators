@@ -21,19 +21,11 @@ export default class Team {
         return Array.from(this.members);
     }
 
-    [Symbol.iterator]() {
+    *[Symbol.iterator]() {
         let team = this.toArray();
-        let current = 0;
-        return {
-            next: () => {
-                if (current < team.length) {
-                    let result = team[current];
-                    current++;
-                    return {value: result, done: false};
-                }
 
-            return {value: undefined, done: true};
-            }
-        };
+        for (const item of team) {
+            yield item;
+        }
     }
 }
